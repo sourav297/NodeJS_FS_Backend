@@ -17,7 +17,10 @@ const registerUser = async(req, res, next)=>{
         //console.log("till there ok");
         //if user exist
         if(user){
-            res.status(409).json({message: "User already exists. Try to login "});
+            console.log('reached till here');
+            //This status code is very important. Here this is the case of success so if we give any unsuccess 
+            //status code then this will give an Error in frontend files
+            res.status(206).json({message: "User already exists. Try to login "});
         }
         else{
             const user=new userModel();
@@ -57,7 +60,7 @@ const loginUser = async(req, res, next)=>{
             //use bcrypt to compare the password
             const result=await bcrypt.compare(req.body.password, loggedUser.password);
             if(result){
-                //create a JSON web token     jwt.sign(payload, secret)
+                //create a JSON web token     jwt.sign(algorithm, {payload}, secret)
                 const token=jwt.sign({user: loggedUser}, process.env.jwt_secret);
                 loggedUser.password=null;
                 //return response stating Authentication successful, token, logged:true
