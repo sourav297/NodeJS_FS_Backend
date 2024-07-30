@@ -60,7 +60,7 @@ const loginUser = async(req, res, next)=>{
             //use bcrypt to compare the password
             const result=await bcrypt.compare(req.body.password, loggedUser.password);
             if(result){
-                //create a JSON web token     jwt.sign(algorithm, {payload}, secret)
+                //create a JSON web token     jwt.sign(header, {payload}, secret)
                 const token=jwt.sign({user: loggedUser}, process.env.jwt_secret);
                 loggedUser.password=null;
                 //return response stating Authentication successful, token, logged:true
