@@ -17,7 +17,7 @@ const disconnect=async()=>{
 
 //find by object:{firstName: "", email: "", etc}
 const findUser=async(obj)=>{
-    return userModel.findOne(obj).exec();
+    return await userModel.findOne(obj).exec();
 }
 
 const saveUser=async(newUser)=>{

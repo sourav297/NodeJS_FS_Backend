@@ -13,6 +13,7 @@ const registerUser = async(req, res, next)=>{
     console.log('Registering...');
     try{
         //find whether the user exist
+        console.log(req);  //see what is comming in req from forntend. It's amazing...!
         const user=await findUser({email: req.body.email});
         //console.log("till there ok");
         //if user exist

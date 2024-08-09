@@ -1,6 +1,8 @@
 const express=require('express');
 const cors=require('cors');
 const userRouter=require('../Router/userRouter');
+const bookRouter=require('../Router/bookRouter');
+const authorRouter=require('../Router/authorRouter');
 const {connect, disconnect}=require('../DB/db');
 
 const app=express();
@@ -22,8 +24,8 @@ app.get('/', (req, res, next)=>{
 
 //routers
 app.use('/users', userRouter);
-//app.use('/books', bookRouter);
-//app.use('/authors', authorRouter);
+app.use('/books', bookRouter);
+app.use('/authors', authorRouter);
 
 
 

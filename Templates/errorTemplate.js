@@ -1,5 +1,5 @@
 const errorTemplate=(res, err, message)=>{
-    console.log(message);
+    console.log(err);
     return res.status(501).json(
         {
             error:{
@@ -10,4 +10,4 @@ const errorTemplate=(res, err, message)=>{
     );
 }
 
-module.exports={errorTemplate};
+module.exports=errorTemplate;
