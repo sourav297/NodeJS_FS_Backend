@@ -7,7 +7,8 @@ const bookSchema=new mongoose.Schema({
         required: true,
     },
     author: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Author',
         required: true,
     },
     ISBN: {
@@ -28,6 +29,7 @@ const bookSchema=new mongoose.Schema({
     }
 })
 
-const bookModel=mongoose.model('book', bookSchema);
+module.exports = mongoose.model('Book', bookSchema);
 
-module.exports=bookModel;
+//const bookModel = mongoose.model('book', bookSchema);
+//module.exports=bookModel;

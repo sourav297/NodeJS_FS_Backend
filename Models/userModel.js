@@ -14,6 +14,7 @@ const userSchema=new mongoose.Schema(
     }
 )
 
-const userModel=mongoose.model('user', userSchema);
+module.exports = mongoose.model('User', userSchema); //ALWAYS USE THIS SYNTAX
 
-module.exports=userModel;
+//const userModel = mongoose.model('user', userSchema); --.NOT USE THIS
+//module.exports=userModel;

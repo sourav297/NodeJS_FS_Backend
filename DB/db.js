@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const userModel = require('../Models/userModel');
+const User = require('../Models/userModel');
 require('dotenv').config();
 
 const connect= async()=>{
@@ -17,7 +17,7 @@ const disconnect=async()=>{
 
 //find by object:{firstName: "", email: "", etc}
 const findUser=async(obj)=>{
-    return await userModel.findOne(obj).exec();
+    return await User.findOne(obj).exec();
 }
 
 const saveUser=async(newUser)=>{

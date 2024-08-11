@@ -1,5 +1,4 @@
-const authorModel=require('../Models/authorModel');
-const mongoose=require('mongoose');
+const Author=require('../Models/authorModel');
 
 const saveAuthor = async(newAuthor)=>{
     return await newAuthor.save();
@@ -7,19 +6,19 @@ const saveAuthor = async(newAuthor)=>{
 
 //.select('-__v) means everything will be selected except __v
 const findAuthor = async(obj)=>{
-    return await authorModel.find(obj).populate('authorWroteBook').select('-__v').exec();
+    return await Author.find(obj).populate(path='authorWroteBook', select='-__v').select('-__v').exec();
 }
 
 const findAuthorById = async(obj) =>{
-    return await authorModel.findOne(obj).populate(path='authorWroteBook', select="-__v").exec();
+    return await Author.findOne(obj).populate(path='authorWroteBook', select="-__v").exec();
 }
 
 const updateAuthor = async (filter, update) =>{
-    return await authorModel.updateOne(filter, update, {new: true}).exec();
+    return await Author.updateOne(filter, update, {new: true}).exec();
 }
 
 const deleteAuthor = async (obj) =>{
-    return await authorModel.deleteOne(obj).exec();
+    return await Author.deleteOne(obj).exec();
 }
 
-module.exports={saveAuthor, findAuthor, findAuthorById, updateAuthor, deleteAuthor};
+module.exports = {saveAuthor, findAuthor, findAuthorById, updateAuthor, deleteAuthor};
