@@ -25,7 +25,7 @@ const getAuthors=async(req, res)=>{
 const getAuthorById = async (req, res)=>{
     try{
         const Result=await findAuthorById({_id: req.params.authorId});
-        if(Result.length>0){
+        if(Result){
             return successTemplate(res, Result, messages.author_found, 200);
         }
         else{
@@ -40,7 +40,7 @@ const getAuthorById = async (req, res)=>{
 
 const postAuthor = async (req, res)=>{
     console.log('....................This is inside POST Author section in authorServices................');
-    //console.log(res);  //See what is going by response to the frontend from the backend
+    console.log(req.header);  //See what is going by response to the frontend from the backend
     try{
         const author=await findAuthorById({
             name: req.body.name,
@@ -75,6 +75,23 @@ const updateAuthorById = async(req, res)=>{
     }
 }
 
+const pushBookIntoAuthor = async(req, res)=>{
+    try{
+        let author = await findAuthorById({_id: req.params.authorId});
+        if(author){
+            author.authorWroteBook.push(req.body.authorWroteBook);
+            const updatedAuthor = await saveAuthor(author);
+            return successTemplate(res, updatedAuthor, "Books Added to the auhtor", 201);
+        }
+        else{
+            return successTemplate(res, author, messages.no_author_found, 207);
+        }
+    }
+    catch(err){
+        return errorTemplate(res, err, err.message, 501);
+    }
+}
+
 
 const deleteAuthorById = async(req, res)=>{
     try {
@@ -86,6 +103,4 @@ const deleteAuthorById = async(req, res)=>{
     }
 }
 
-
-
-module.exports={getAuthors, getAuthorById, postAuthor, updateAuthorById, deleteAuthorById};
+module.exports={getAuthors, getAuthorById, postAuthor, updateAuthorById, pushBookIntoAuthor, deleteAuthorById};

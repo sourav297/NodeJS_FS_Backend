@@ -10,7 +10,7 @@ const findAuthor = async(obj)=>{
 }
 
 const findAuthorById = async(obj) =>{
-    return await Author.findOne(obj).populate(path='authorWroteBook', select="-__v").exec();
+    return await Author.findOne(obj).populate(path='authorWroteBook', select="-__v").select('-__v').exec();
 }
 
 const updateAuthor = async (filter, update) =>{

@@ -1,0 +1,590 @@
+{
+    "openapi":"3.0.2",
+    "info":{
+        "title": "NodeJS FullStack Backend Documentation",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Sourav Singha",
+            "email": "singhasourav632@gmail.com",
+            "url": "https://github.com/sourav297"
+        }
+    },
+    "servers": [
+        {
+            "description": "Local Server",
+            "url": "http://localhost:3004/"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "bearerAuth":{
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        {
+            "bearerAuth":[]
+        }
+    ],
+    "paths": {
+        "/users/register":{
+            "post":{
+                "tags": [
+                    "Users"
+                ],
+                "description": "Register User",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "firstName": {
+                                        "type": "string",
+                                        "default": "Noton"
+                                    },
+                                    "lastName": {
+                                        "type": "string",
+                                        "default": "Singha"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "default": "khakurda"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "default": "medinipur"
+                                    },
+                                    "state": {
+                                        "type": "string",
+                                        "default": "West Bengal"
+                                    },
+                                    "zipCode": {
+                                        "type": "string",
+                                        "default": "445"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "default": "noton123@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "default": "noton123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "success"
+                    },
+                    "201":{
+                        "description": "success"
+                    },
+                    "400":{
+                        "description": "Not Found"
+                    },
+                    "500":{
+                        "description": "Error"
+                    },
+                    "501":{
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/users/login":{
+            "post":{
+                "tags": [
+                    "Users"
+                ],
+                "description": "Login Users",
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "email":{
+                                        "type": "string",
+                                        "default": "noton123@gmail.com"
+                                    },
+                                    "password":{
+                                        "type": "string",
+                                        "default": "noton123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "success"
+                    },
+                    "201":{
+                        "description": "success"
+                    },
+                    "400":{
+                        "description": "Not Found"
+                    },
+                    "500":{
+                        "description": "Error"
+                    },
+                    "501":{
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/books":{
+            "post":{
+                "tags": [
+                    "Post a Book"
+                ],
+                "description": "Save a Book to the books DB",
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "default": "DSA"
+                                    },
+                                    "author": {
+                                        "type": "string",
+                                        "default": "sourav"
+                                    },
+                                    "ISBN": {
+                                        "type": "string",
+                                        "default": "ISO2001"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "default": "891"
+                                    },
+                                    "noOfPages": {
+                                        "type": "number",
+                                        "default": "567"
+                                    },
+                                    "yearPublished": {
+                                        "type": "number",
+                                        "default": "2021"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "success"
+                    },
+                    "201":{
+                        "description": "success"
+                    },
+                    "400":{
+                        "description": "Not Found"
+                    },
+                    "500":{
+                        "description": "Error"
+                    },
+                    "501":{
+                        "description": "Error"
+                    }
+                }
+            },
+            "get":{
+                "tags": [
+                    "Get All Books"
+                ],
+                "description": "Get All Books",
+                "responses": {
+                    "200":{
+                        "description": "success"
+                    },
+                    "201":{
+                        "description": "success"
+                    },
+                    "400":{
+                        "description": "Not Found"
+                    },
+                    "500":{
+                        "description": "Error"
+                    },
+                    "501":{
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/books/books":{
+            "get":{
+                "tags": [
+                    "Get all Book's Ids"
+                ],
+                "description": "Get All Book's Ids",
+                "responses": {
+                    "200":{
+                        "description": "success"
+                    },
+                    "201":{
+                        "description": "success"
+                    },
+                    "400":{
+                        "description": "Not Found"
+                    },
+                    "500":{
+                        "description": "Error"
+                    },
+                    "501":{
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/books/:{bookId}": {
+            "get":{
+                "tags":[
+                    "Get Book by its Id"
+                ],
+                "description": "Get a Book by ID",
+                "parameters": [
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "The bookID",
+                        "required": true
+                    }
+                ],
+                "responses":{
+                    "200":{
+                    "description": "success"
+                    },
+                    "201":{
+                        "description": "success"
+                    },
+                    "400":{
+                        "description": "Not Found"
+                    },
+                    "500":{
+                        "description": "Error"
+                    },
+                    "501":{
+                        "description": "Error"
+                    }
+                }
+            },
+            "put":{
+                "tags": [
+                    "Update a Book"
+                ],
+                "description": "Update a Book by its Id",
+                "parameters": [
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "The book Id: ",
+                        "required": true
+                    }
+                ],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "default": "A Tree Grows in Brooklyn Heights"
+                                    },
+                                    "author": {
+                                        "type": "string",
+                                        "default": "sourav"
+                                    },
+                                    "ISBN": {
+                                        "type": "string",
+                                        "default": "ISO2001"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "default": "891"
+                                    },
+                                    "noOfPages": {
+                                        "type": "number",
+                                        "default": "567"
+                                    },
+                                    "yearPublished": {
+                                        "type": "number",
+                                        "default": "2021"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                    "description": "success"
+                    },
+                    "201":{
+                        "description": "success"
+                    },
+                    "400":{
+                        "description": "Not Found"
+                    },
+                    "500":{
+                        "description": "Error"
+                    },
+                    "501":{
+                        "description": "Error"
+                    }
+                }
+            },
+            "delete":{
+                "tags": [
+                    "Delete Book by its Id"
+                ],
+                "description": "Delete a Book by its Id",
+                "parameters": [
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "The book Id: ",
+                        "required": true
+                    }
+                ],
+                "responses":{
+                    "200":{
+                    "description": "success"
+                    },
+                    "201":{
+                        "description": "success"
+                    },
+                    "400":{
+                        "description": "Not Found"
+                    },
+                    "500":{
+                        "description": "Error"
+                    },
+                    "501":{
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/authors":{
+            "post":{
+                "tags": [
+                    "Authors"
+                ],
+                "description": "Save a Author to the authors DB",
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name":{
+                                        "type": "string",
+                                        "default": "sourav"
+                                    },
+                                    "authorWroteBook":{
+                                        "type": "string",
+                                        "default": ""
+                                    },
+                                    "publisher":{
+                                        "type": "string",
+                                        "default": "MC Graw Hill"
+                                    },
+                                    "website":{
+                                        "type": "string",
+                                        "default": "mcgrawhill.edu.in"
+                                    },
+                                    "about":{
+                                        "type": "string",
+                                        "default": "I am sourav author of DSA"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                    "description": "success"
+                    },
+                    "201":{
+                        "description": "success"
+                    },
+                    "400":{
+                        "description": "Not Found"
+                    },
+                    "500":{
+                        "description": "Error"
+                    },
+                    "501":{
+                        "description": "Error"
+                    }
+                }
+            },
+            "get":{
+                "tags": [
+                    "Authors"
+                ],
+                "description": "Get All Authors",
+                "responses":{
+                    "200":{
+                    "description": "success"
+                    },
+                    "201":{
+                        "description": "success"
+                    },
+                    "400":{
+                        "description": "Not Found"
+                    },
+                    "500":{
+                        "description": "Error"
+                    },
+                    "501":{
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/authors/:{authorId}":{
+            "get":{
+                "tags": [
+                    "Get Author by Id"
+                ],
+                "description": "Get a Author by its Id",
+                "parameters": [
+                    {
+                        "name": "authorId",
+                        "in": "path",
+                        "description": "The author Id: ",
+                        "required": true
+                    }
+                ],
+                "responses":{
+                    "200":{
+                    "description": "success"
+                    },
+                    "201":{
+                        "description": "success"
+                    },
+                    "400":{
+                        "description": "Not Found"
+                    },
+                    "500":{
+                        "description": "Error"
+                    },
+                    "501":{
+                        "description": "Error"
+                    }
+                }
+            },
+            "patch":{
+                "tags": [
+                    "Update a Author"
+                ],
+                "description": "Update a Author by its Id",
+                "parameters": [
+                    {
+                        "name": "authorId",
+                        "in": "path",
+                        "description": "The author Id: ",
+                        "required": true
+                    }
+                ],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name":{
+                                        "type": "string",
+                                        "default": "sourav"
+                                    },
+                                    "authorWroteBook":{
+                                        "type": "string",
+                                        "default": ""
+                                    },
+                                    "publisher":{
+                                        "type": "string",
+                                        "default": "MC Graw Hill"
+                                    },
+                                    "website":{
+                                        "type": "string",
+                                        "default": "mcgrawhill.edu.in"
+                                    },
+                                    "about":{
+                                        "type": "string",
+                                        "default": "I am sourav author of DSA"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                    "description": "success"
+                    },
+                    "201":{
+                        "description": "success"
+                    },
+                    "400":{
+                        "description": "Not Found"
+                    },
+                    "500":{
+                        "description": "Error"
+                    },
+                    "501":{
+                        "description": "Error"
+                    }
+                }
+            },
+            "delete":{
+                "tags": [
+                    "Delete a Author"
+                ],
+                "description": "Delete a Author by its Id",
+                "parameters": [
+                    {
+                        "name": "authorId",
+                        "in": "path",
+                        "description": "The author Id: ",
+                        "required": true
+                    }
+                ],
+                "responses":{
+                    "200":{
+                    "description": "success"
+                    },
+                    "201":{
+                        "description": "success"
+                    },
+                    "400":{
+                        "description": "Not Found"
+                    },
+                    "500":{
+                        "description": "Error"
+                    },
+                    "501":{
+                        "description": "Error"
+                    }
+                }
+            }
+        }
+        
+    }
+}

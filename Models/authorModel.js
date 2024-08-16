@@ -7,11 +7,11 @@ const authorSchema= new mongoose.Schema({
         type: String,
         required: true
     },
-    authorWroteBook: [{
+    authorWroteBook: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Book',
         required: true
-    }],
+    },
     publisher: {
         type: String,
         required: true

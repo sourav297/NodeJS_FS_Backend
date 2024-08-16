@@ -4,6 +4,8 @@ const userRouter=require('../Router/userRouter');
 const bookRouter=require('../Router/bookRouter');
 const authorRouter=require('../Router/authorRouter');
 const {connect, disconnect}=require('../DB/db');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../Config/swaggerOptions.json');
 
 const app=express();
 //Before anythying connect to database
@@ -15,6 +17,8 @@ app.use(express.urlencoded({extended: true}));
 //use middleware to handle cors policy
 app.use(cors());
 
+//use middleware for API Docs Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 //health point or actuators
