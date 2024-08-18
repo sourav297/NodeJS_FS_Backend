@@ -13,7 +13,7 @@ const registerUser = async(req, res, next)=>{
     console.log('Registering...');
     try{
         //find whether the user exist
-        console.log(req);  //see what is comming in req from forntend. It's amazing...!
+        //console.log(req);  //see what is comming in req from forntend. It's amazing...!
         const user=await findUser({email: req.body.email});
         //console.log("till there ok");
         //if user exist
@@ -41,7 +41,10 @@ const registerUser = async(req, res, next)=>{
         }
     }
     catch(err){
-        return errorTemplate(res, err, err.message);
+        //return errorTemplate(res, err, err.message);
+        res.status(501).json({
+            message: err.message
+        })
     }
 }
 
@@ -74,12 +77,15 @@ const loginUser = async(req, res, next)=>{
             }
             else{
                 //response authentication failed
-                throw new Error('Authentication failed, User email/password NOT matched');
+                throw new Error('Authentication failed, User email or password NOT matched');
             }
         }
     }
     catch(err){
-        return errorTemplate(res, err, err.message);
+        //return errorTemplate(res, err, err.message);
+        res.status(501).json({
+            message: err.message
+        })
     }
 }
 
