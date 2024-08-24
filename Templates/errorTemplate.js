@@ -1,9 +1,9 @@
 const errorTemplate=(res, err, message)=>{
-    console.log(err);
+    console.error(message);
     return res.status(501).json(
         {
             error:{
-                message: err.message,
+                message: message,
                 status: err.status
             }
         }

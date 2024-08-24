@@ -52,17 +52,24 @@ const registerUser = async(req, res, next)=>{
 //Login
 const loginUser = async(req, res, next)=>{
     try{
+        console.log("Logging in......");
+        
         //find the user and return the user
         const loggedUser=await findUser({email: req.body.email});
         //if the user is not found, return response stating "Authentication failed"
         if(!loggedUser){
-            res.status(404).json({
-                message: "Authentication failed, User is NOT found"
+            return res.status(403).json({
+                error: {
+                    message: "Authentication failed, User is NOT found"
+                }
             });
+            //throw new Error("Authentication failed, User is NOT found");
         }
         else{
             //use bcrypt to compare the password
             const result=await bcrypt.compare(req.body.password, loggedUser.password);
+            console.log(result);
+            
             if(result){
                 //create a JSON web token     jwt.sign(header, {payload}, secret)
                 const token=jwt.sign({user: loggedUser}, process.env.jwt_secret, {expiresIn: 60*10});
@@ -77,15 +84,27 @@ const loginUser = async(req, res, next)=>{
             }
             else{
                 //response authentication failed
-                throw new Error('Authentication failed, User email or password NOT matched');
+                //throw new Error('Authentication failed, Password NOT matched');
+                return res.status(402).json({
+                    error: {
+                        message: "Password NOT Matched"
+                    }
+                });
             }
         }
     }
     catch(err){
+        console.log("reached here");
+        console.log(err);
+        
         //return errorTemplate(res, err, err.message);
-        res.status(501).json({
-            message: err.message
-        })
+        return res.status(402).json({
+            error: {
+                message: err.message,
+                status: err.status
+            }
+        });
+        //return errorTemplate(res, err, err.message);
     }
 }
 
