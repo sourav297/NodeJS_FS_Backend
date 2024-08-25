@@ -78,9 +78,9 @@ const updateBooks=async(req, res)=>{
     try{
         let book=new bookModel();
         book=Object.assign(book, req.body);
-        const updatedBook=await updateBook({_id: req.params.bookId}, book);
+        await updateBook({_id: req.params.bookId}, book);
+        const updatedBook = await findOneBook({_id: req.params.bookId}, '-__v');
         console.log(updatedBook);
-        
         return successTemplate(res, updatedBook, messages.book_updated, 201);
     }
     catch(err){

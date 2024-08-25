@@ -8,6 +8,7 @@ module.exports = (req, res, next)=>{
     try{
         // "Bearer: dsjgdjhkkdjwjkdwjwk6282hjdwh8"
         //This is array destructuring in javascript
+        //const token = req.headers.authorization.split(' ')[1];  //This is also a technique
         const [bearer, token] = req.headers.authorization.split(' ');
 
         jwt.verify(token, process.env.jwt_secret);

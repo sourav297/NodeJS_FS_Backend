@@ -71,8 +71,9 @@ const loginUser = async(req, res, next)=>{
             console.log(result);
             
             if(result){
+                //If password matched then this if block will be executed
                 //create a JSON web token     jwt.sign(header, {payload}, secret)
-                const token=jwt.sign({user: loggedUser}, process.env.jwt_secret, {expiresIn: 60*10});
+                const token=jwt.sign({user: loggedUser}, process.env.jwt_secret);
                 loggedUser.password=null;
                 //return response stating Authentication successful, token, logged:true
                 res.status(200).json({
@@ -83,6 +84,7 @@ const loginUser = async(req, res, next)=>{
                 })
             }
             else{
+                //If password does NOT matched then this else block will be executed
                 //response authentication failed
                 //throw new Error('Authentication failed, Password NOT matched');
                 return res.status(402).json({
