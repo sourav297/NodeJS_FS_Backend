@@ -29,6 +29,6 @@ const authorSchema= new mongoose.Schema({
 //module.exports = mongoose.model('Collection name/Model name', Schema_of_this_collection);-->THIS IS CORRECT
 module.exports = mongoose.model('Author', authorSchema); //Always use this syntax, NOT store the model in another variable
 
-//module.exports=authorModel;
+//const authorModel = mongoose.model('author', authorSchema);  module.exports=authorModel;
 //The above line is giving the error "Schema has not been registered for model 'bookModel'"
 //This syntax will not work when we want to perform some relationships among models.

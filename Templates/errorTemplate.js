@@ -1,5 +1,5 @@
 const errorTemplate=(res, err, message)=>{
-    console.error(message);
+    console.log(err);
     return res.status(501).json(
         {
             error:{

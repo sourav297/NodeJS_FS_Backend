@@ -21,6 +21,6 @@ router.put('/:authorId', [authorize, updateAuthorById]);
 //router.put('/:authorId', [authorize, pushBookIntoAuthor]);
 
 //delete Author from the DB
-router.delete('/:authorId', authorize, deleteAuthorById);
+router.delete('/:authorId', [authorize, deleteAuthorById]);
 
 module.exports=router;

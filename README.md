@@ -13,3 +13,9 @@ npm start
 npm i
 npm test
 ```
+
+## To see the swagger Backend Documentation
+
+```shell
+http://localhost:3004/api-docs
+```

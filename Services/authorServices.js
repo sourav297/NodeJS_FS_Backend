@@ -39,15 +39,15 @@ const getAuthorById = async (req, res)=>{
 
 
 const postAuthor = async (req, res)=>{
-    console.log('....................This is inside POST Author section in authorServices................');
+    console.log('....................This is inside postAuthor section in authorServices................');
     console.log(req.header);  //See what is going by response to the frontend from the backend
     try{
         const author=await findAuthorById({
             name: req.body.name,
-            authorWroteBook: req.body.bookId
+            authorWroteBook: req.body.authorWroteBook
         });
         if(author){
-            throw new Error(messages.author_exist);
+            return successTemplate(res, author, messages.author_exist, 501);
         }
         else{
             let newAuthor = new authorModel();
@@ -62,11 +62,11 @@ const postAuthor = async (req, res)=>{
     }
 }
 
-
 const updateAuthorById = async(req, res)=>{
     try {
         let author=new authorModel();
         author=Object.assign(author, req.body);
+        console.log('....................This is inside updateAuthorById section in authorServices................');
         const Result = await updateAuthor({_id: req.params.authorId}, author);
         return successTemplate(res, Result, messages.author_updated, 200);
     }
