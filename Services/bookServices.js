@@ -24,7 +24,7 @@ const getAllBooks=async(req, res)=>{
 const getAllBooksIds=async(req, res)=>{
     try{
         const books=await findAllBooks({}, '_id, title');
-        console.log(books);
+        //console.log(books);
         return successTemplate(res, books, messages.books_found, 200);
     }
     catch(err){
@@ -38,7 +38,7 @@ const getBookByIds=async(req, res)=>{
     try{
         const book=await findOneBook({_id: req.params.bookId}, '-__v');
         if(!book){
-            throw new Error(messages.book_not_found);
+            return successTemplate(res, book, messages.book_not_found, 201);
         }
         else{
             return successTemplate(res, book, messages.book_found, 200);
@@ -80,7 +80,7 @@ const updateBooks=async(req, res)=>{
         book=Object.assign(book, req.body);
         await updateBook({_id: req.params.bookId}, book);
         const updatedBook = await findOneBook({_id: req.params.bookId}, '-__v');
-        console.log(updatedBook);
+        //console.log(updatedBook);
         return successTemplate(res, updatedBook, messages.book_updated, 201);
     }
     catch(err){

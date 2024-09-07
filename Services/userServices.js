@@ -10,7 +10,7 @@ const {errorTemplate}=require('../Templates/errorTemplate');
 
 //Registration
 const registerUser = async(req, res, next)=>{
-    console.log('Registering...');
+    //console.log('Registering...');
     try{
         //find whether the user exist
         //console.log(req);  //see what is comming in req from forntend. It's amazing...!
@@ -18,7 +18,7 @@ const registerUser = async(req, res, next)=>{
         //console.log("till there ok");
         //if user exist
         if(user){
-            console.log('reached till here');
+            //console.log('reached till here');
             //This status code is very important. Here this is the case of success so if we give any unsuccess 
             //status code then this will give an Error in frontend files
             res.status(206).json({message: "User already exists. Try to login "});
@@ -52,7 +52,7 @@ const registerUser = async(req, res, next)=>{
 //Login
 const loginUser = async(req, res, next)=>{
     try{
-        console.log("Logging in......");
+        //console.log("Logging in......");
         
         //find the user and return the user
         const loggedUser=await findUser({email: req.body.email});
@@ -68,12 +68,12 @@ const loginUser = async(req, res, next)=>{
         else{
             //use bcrypt to compare the password
             const result=await bcrypt.compare(req.body.password, loggedUser.password);
-            console.log(result);
+            //console.log(result);
             
             if(result){
                 //If password matched then this if block will be executed
                 //create a JSON web token     jwt.sign(header, {payload}, secret, {expiresIn: "3d"});
-                const token=jwt.sign({user: loggedUser}, process.env.jwt_secret, {expiresIn: '1m'});
+                const token=jwt.sign({user: loggedUser}, process.env.jwt_secret);
                 loggedUser.password=null;
                 //return response stating Authentication successful, token, logged:true
                 res.status(200).json({
@@ -96,8 +96,8 @@ const loginUser = async(req, res, next)=>{
         }
     }
     catch(err){
-        console.log("reached here");
-        console.log(err);
+        //console.log("reached here");
+        //console.log(err);
         
         //return errorTemplate(res, err, err.message);
         return res.status(402).json({

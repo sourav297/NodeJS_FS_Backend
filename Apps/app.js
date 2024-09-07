@@ -8,8 +8,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../Config/swaggerOptions.json');
 
 const app=express();
-//Before anythying connect to database
-connect();
+
 // use middleware to form our contract for incoming json payloads ONLY!!
 app.use(express.json());
 //use middleware for url encoding
@@ -49,12 +48,7 @@ app.use((error, req, res, next)=>{
     })
 })
 
-
-
-//After all disconnect from database
-//disconnect();
-
-
-
+//connect to the database
+connect();
 
 module.exports=app;

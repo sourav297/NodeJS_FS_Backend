@@ -39,8 +39,8 @@ const getAuthorById = async (req, res)=>{
 
 
 const postAuthor = async (req, res)=>{
-    console.log('....................This is inside postAuthor section in authorServices................');
-    console.log(req.header);  //See what is going by response to the frontend from the backend
+    //console.log('....................This is inside postAuthor section in authorServices................');
+    //console.log(req.header);  //See what is going by response to the frontend from the backend
     try{
         const author=await findAuthorById({
             name: req.body.name,
@@ -66,7 +66,7 @@ const updateAuthorById = async(req, res)=>{
     try {
         let author=new authorModel();
         author=Object.assign(author, req.body);
-        console.log('....................This is inside updateAuthorById section in authorServices................');
+        //console.log('This is inside updateAuthorById section in authorServices................');
         const Result = await updateAuthor({_id: req.params.authorId}, author);
         return successTemplate(res, Result, messages.author_updated, 200);
     }
