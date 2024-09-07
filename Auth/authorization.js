@@ -15,6 +15,6 @@ module.exports = (req, res, next)=>{
         next();
     }
     catch(err){
-        return errorTemplate(res, err, messages.auth_failed, 500);
+        return errorTemplate(res, err, messages.auth_failed);
     }
 }

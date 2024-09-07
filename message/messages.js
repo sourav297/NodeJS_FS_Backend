@@ -20,5 +20,5 @@ module.exports = {
     author_not_updated: 'Author not updated',
     author_deleted: 'Author deleted',
     author_not_deleted: 'Author not deleted',
-    auth_failed: 'Authorization failed',
+    auth_failed: 'Authorization failed, Session Expired',
   };

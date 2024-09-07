@@ -72,8 +72,8 @@ const loginUser = async(req, res, next)=>{
             
             if(result){
                 //If password matched then this if block will be executed
-                //create a JSON web token     jwt.sign(header, {payload}, secret)
-                const token=jwt.sign({user: loggedUser}, process.env.jwt_secret);
+                //create a JSON web token     jwt.sign(header, {payload}, secret, {expiresIn: "3d"});
+                const token=jwt.sign({user: loggedUser}, process.env.jwt_secret, {expiresIn: '1m'});
                 loggedUser.password=null;
                 //return response stating Authentication successful, token, logged:true
                 res.status(200).json({
